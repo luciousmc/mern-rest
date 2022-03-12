@@ -9,6 +9,10 @@ const getGoals = (req, res) => {
 // @route   POST /api/goals
 // @access  Private
 const setGoal = (req, res) => {
+  if (!req.body.text) {
+    res.status(400);
+    throw new Error('No text found in request.');
+  }
   res.status(201).json({ message: 'Created Goal' });
 };
 
