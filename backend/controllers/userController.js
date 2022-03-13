@@ -21,7 +21,31 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('All fields are required');
   }
 
-  res.status(201).json({ message: 'User Registered Succesffully' });
+  // Check if User exists
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error('User Already Exists');
+  }
+
+  // Hash Password
+  const salt = await bcrypt.genSalt();
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  // Create User
+  const user = await User.create({
+    name,
+    email,
+    password: hashedPassword,
+  });
+
+  if (user) {
+    res.status(201).json({ name: user.name, email: user.email, _id: user.id });
+  } else {
+    res.status(400);
+    throw new Error('Invalid user');
+  }
 });
 
 // @desc    Get user info
