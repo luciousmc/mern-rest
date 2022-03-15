@@ -30,7 +30,7 @@ function Login() {
       <section className='form register'>
         <form onSubmit={handleSubmit}>
           <input
-            type='text'
+            type='email'
             className='form-control'
             id='email'
             name='email'
@@ -39,7 +39,7 @@ function Login() {
             onChange={handleChange}
           />
           <input
-            type='text'
+            type='password'
             className='form-control'
             id='password'
             name='password'

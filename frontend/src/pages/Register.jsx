@@ -41,7 +41,7 @@ function Register() {
             onChange={handleChange}
           />
           <input
-            type='text'
+            type='email'
             className='form-control'
             id='email'
             name='email'
