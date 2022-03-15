@@ -56,11 +56,15 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
-    token: generateToken(user._id),
   });
 
   if (user) {
-    res.status(201).json({ name: user.name, email: user.email, _id: user.id });
+    res.status(201).json({
+      name: user.name,
+      email: user.email,
+      _id: user.id,
+      token: user._id,
+    });
   } else {
     res.status(400);
     throw new Error('Invalid user');
@@ -69,9 +73,15 @@ const registerUser = asyncHandler(async (req, res) => {
 
 // @desc    Get user info
 // @route   GET /api/users/me
-// @access  Public
+// @access  Private
 const getUserInfo = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: 'Got My infos' });
+  const { _id, name, email } = await User.findById(req.user.id);
+
+  res.status(200).json({
+    id: _id,
+    name,
+    email,
+  });
 });
 
 module.exports = {
