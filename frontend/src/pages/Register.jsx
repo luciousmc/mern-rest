@@ -18,6 +18,10 @@ function Register() {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <section className='heading'>
@@ -26,12 +30,13 @@ function Register() {
       </section>
 
       <section className='form register'>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type='text'
             className='form-control'
             id='name'
             name='name'
+            value={name}
             placeholder='Enter Your Name'
             onChange={handleChange}
           />
@@ -40,6 +45,7 @@ function Register() {
             className='form-control'
             id='email'
             name='email'
+            value={email}
             placeholder='Email Address'
             onChange={handleChange}
           />
@@ -48,6 +54,7 @@ function Register() {
             className='form-control'
             id='password'
             name='password'
+            value={password}
             placeholder='Enter Password'
             onChange={handleChange}
           />
@@ -56,6 +63,7 @@ function Register() {
             className='form-control'
             id='password2'
             name='password2'
+            value={password2}
             placeholder='Confirm Password'
             onChange={handleChange}
           />

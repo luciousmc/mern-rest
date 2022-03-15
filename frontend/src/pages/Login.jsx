@@ -16,6 +16,10 @@ function Login() {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <section className='heading'>
@@ -24,13 +28,14 @@ function Login() {
       </section>
 
       <section className='form register'>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type='text'
             className='form-control'
             id='email'
             name='email'
             placeholder='Email Address'
+            value={email}
             onChange={handleChange}
           />
           <input
@@ -38,6 +43,7 @@ function Login() {
             className='form-control'
             id='password'
             name='password'
+            value={password}
             placeholder='Enter Password'
             onChange={handleChange}
           />
