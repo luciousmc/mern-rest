@@ -38,7 +38,7 @@ const updateGoal = asyncHandler(async (req, res) => {
     throw new Error('Goal not Found');
   }
 
-  const user = User.findById(req.user.id);
+  const user = await User.findById(req.user.id);
 
   // Check if user exists
   if (!user) {
@@ -69,7 +69,7 @@ const deleteGoal = asyncHandler(async (req, res) => {
     throw new Error('Goal not Found');
   }
 
-  const user = User.findById(req.user.id);
+  const user = await User.findById(req.user.id);
 
   // Check if user exists
   if (!user) {
